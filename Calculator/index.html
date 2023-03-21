@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculator</title>
+</head>
+
+<body>
+    <h1>Calculator</h1>
+    <div class="output-wrapper">
+        <p id="output">0</p>
+    </div>
+    <div class="wrapper">
+        <div class="calculator">
+            <button id="7">7</button>
+            <button id="8">8</button>
+            <button id="9">9</button>
+            <button id="devide">/</button>
+            <button id="4">4</button>
+            <button id="5">5</button>
+            <button id="6">6</button>
+            <button id="multiply">x</button>
+            <button id="1">1</button>
+            <button id="2">2</button>
+            <button id="3">3</button>
+            <button id="add">+</button>
+            <button id="0">0</button>
+            <button id="delete">delete</button>
+            <button id="enter">enter</button>
+            <button id="subtract">-</button>
+        </div>
+    </div>
+
+
+
+    <script>
+        const btn0 = document.getElementById("0")
+        const btn1 = document.getElementById("1")
+        const btn2 = document.getElementById("2")
+        const btn3 = document.getElementById("3")
+        const btn4 = document.getElementById("4")
+        const btn5 = document.getElementById("5")
+        const btn6 = document.getElementById("6")
+        const btn7 = document.getElementById("7")
+        const btn8 = document.getElementById("8")
+        const btn9 = document.getElementById("9")
+        const btnAdd = document.getElementById("add")
+        const btnSub = document.getElementById('subtract')
+        const btnDev = document.getElementById('devide')
+        const btnMul = document.getElementById('multiply')
+        const btnDel = document.getElementById('delete')
+        const btnEnt = document.getElementById('enter')
+
+        let outputvalue = ' '
+        let input_arr = []
+
+        function RenderOutput(text) {
+            const output = document.getElementById('output')
+            output.innerHTML = text
+            console.log(input_arr)
+        }
+
+        function HandleInput() {
+
+        }
+        function DeleteOutput() {
+            for (let i = input_arr.length; i > 0; i--) {
+                input_arr.pop(i)
+            }
+            outputvalue = ' '
+            RenderOutput(outputvalue)
+        }
+
+        function Add(a, b) {
+            return parseInt(a) + parseInt(b)
+        }
+
+        function Multiply(a, b) {
+            return a * b
+        }
+
+        function Subtract(a, b) {
+            return a - b
+        }
+
+        function Devide(a, b) {
+            if (b != 0) {
+                return a / b
+            }
+            else return "Cannot Devide by Zero"
+        }
+
+        function Parser(arr) {
+            let parsed = false
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] == "+") {
+                    try {
+                        console.log("added")
+                        return Add(arr[i - 1], arr[i + 1])
+                    }
+                    catch {
+                        return "Something Went Wrong"
+                    }
+                }
+                if (arr[i] == "*") {
+                    try {
+                        console.log("Multiplied")
+                        return Multiply(arr[i - 1], arr[i + 1])
+                    }
+                    catch {
+                        return "Something Went Wrong"
+                    }
+                }
+                if (arr[i] == "-") {
+                    try {
+                        console.log("Subtracted")
+                        return Subtract(arr[i - 1], arr[i + 1])
+                    }
+                    catch {
+                        return "Something Went Wrong"
+                    }
+                }
+                if (arr[i] == "/") {
+                    try {
+                        console.log("Devided")
+                        return Devide(arr[i - 1], arr[i + 1])
+                    }
+                    catch {
+                        return "Something Went Wrong"
+                    }
+                }
+            }
+
+        }
+        btn0.addEventListener('click', function () {
+            outputvalue += "0"
+            RenderOutput(outputvalue)
+        })
+        btn1.addEventListener('click', function () {
+            outputvalue += "1"
+            RenderOutput(outputvalue)
+        })
+        btn2.addEventListener('click', function () {
+            outputvalue += "2"
+            RenderOutput(outputvalue)
+        })
+        btn3.addEventListener('click', function () {
+            outputvalue += "3"
+            RenderOutput(outputvalue)
+        })
+        btn4.addEventListener('click', function () {
+            outputvalue += "4"
+            RenderOutput(outputvalue)
+        })
+        btn5.addEventListener('click', function () {
+            outputvalue += "5"
+            RenderOutput(outputvalue)
+        })
+        btn6.addEventListener('click', function () {
+            outputvalue += "6"
+            RenderOutput(outputvalue)
+        })
+        btn7.addEventListener('click', function () {
+            outputvalue += "7"
+            RenderOutput(outputvalue)
+        })
+        btn8.addEventListener('click', function () {
+            outputvalue += "8"
+            RenderOutput(outputvalue)
+        })
+        btn9.addEventListener('click', function () {
+            outputvalue += "9"
+            RenderOutput(outputvalue)
+        })
+        btnAdd.addEventListener('click', function () {
+            if (outputvalue != "" && outputvalue != " ") {
+                input_arr.push(outputvalue)
+            }
+            input_arr.push('+')
+            outputvalue = ''
+        })
+        btnSub.addEventListener('click', function () {
+            if (outputvalue != "" && outputvalue != " ") {
+                input_arr.push(outputvalue)
+            }
+            input_arr.push('-')
+            outputvalue = ''
+        })
+        btnDev.addEventListener('click', function () {
+            if (outputvalue != "" && outputvalue != " ") {
+                input_arr.push(outputvalue)
+            }
+            input_arr.push('/')
+            outputvalue = ''
+        })
+        btnMul.addEventListener('click', function () {
+            if (outputvalue != "" && outputvalue != " ") {
+                input_arr.push(outputvalue)
+            }
+            input_arr.push('*')
+            outputvalue = ''
+        })
+        btnDel.addEventListener('click', function () {
+            DeleteOutput()
+        })
+
+        btnEnt.addEventListener('click', function () {
+            if (outputvalue != undefined) {
+                input_arr.push(outputvalue)
+            }
+            let result = Parser(input_arr)
+            outputvalue = ''
+            RenderOutput(result)
+            console.log(input_arr)
+            for (let i = input_arr.length; i > 0; i--) {
+                input_arr.pop(i)
+            }
+            console.log(input_arr)
+            input_arr.push(result.toString())
+
+        })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+* {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+body {
+    background-color: #ececec;
+}
+
+.calculator {
+
+    display: grid;
+    grid-template-columns: repeat(4, 200px);
+    background-color: black;
+}
+
+.wrapper {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+.output-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+p {
+    font-size: 60px;
+}
+
+h1 {
+    text-align: center;
+}
+
+button {
+    cursor: pointer;
+    background-color: white;
+    width: auto;
+    padding: 40px 60px;
+    font-size: 30px;
+}
+
+button:hover {
+    background-color: darkgray;
+}
+
+#devide,
+#multiply,
+#add,
+#subtract {
+    background-color: orange;
+}
+
+#devide:hover,
+#multiply:hover,
+#add:hover,
+#subtract:hover {
+    background-color: darkorange;
+}
